@@ -7,3 +7,7 @@ chapters:
 - file: markdown
 - file: notebooks
 - file: markdown-notebooks
+- file: Crawling Berita
+- file: Vector Space Model
+- file: Implementasi VSM
+- file: Graph&rank

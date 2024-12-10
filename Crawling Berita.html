@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -63,6 +63,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'Crawling Berita';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Vector Space Model (VSM)" href="Vector%20Space%20Model.html" />
+    <link rel="prev" title="Notebooks with MyST Markdown" href="markdown-notebooks.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -113,8 +115,6 @@
     <div class="bd-container__inner bd-page-width">
       
       
-      
-        
       
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
@@ -168,10 +168,18 @@
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Klasifikasi Berita</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Vector%20Space%20Model.html">Vector Space Model (VSM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Implementasi%20VSM.html">Implementasi VSM</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="Graph%26rank.html">Membuat Graph &amp; Rank Kalimat</a></li>
+
+
 </ul>
 
     </div>
@@ -496,18 +504,18 @@ link : <a class="reference external" href="https://www.sindonews.com/">https://w
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:56 [scrapy.utils.log] INFO: Scrapy 2.8.0 started (bot: scrapybot)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 23:06:53 [scrapy.utils.log] INFO: Scrapy 2.8.0 started (bot: scrapybot)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:56 [scrapy.utils.log] INFO: Versions: lxml 4.9.3.0, libxml2 2.10.4, cssselect 1.2.0, parsel 1.8.1, w3lib 2.1.2, Twisted 23.10.0, Python 3.11.7 | packaged by Anaconda, Inc. | (main, Dec 15 2023, 18:05:47) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 24.0.0 (OpenSSL 3.3.1 4 Jun 2024), cryptography 42.0.2, Platform Windows-10-10.0.22631-SP0
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 23:06:53 [scrapy.utils.log] INFO: Versions: lxml 4.9.3.0, libxml2 2.10.4, cssselect 1.2.0, parsel 1.8.1, w3lib 2.1.2, Twisted 23.10.0, Python 3.11.7 | packaged by Anaconda, Inc. | (main, Dec 15 2023, 18:05:47) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 24.0.0 (OpenSSL 3.3.1 4 Jun 2024), cryptography 42.0.2, Platform Windows-10-10.0.22631-SP0
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:56 [scrapy.crawler] INFO: Overridden settings:
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 23:06:53 [scrapy.crawler] INFO: Overridden settings:
 {&#39;USER_AGENT&#39;: &#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 &#39;
                &#39;(KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36&#39;}
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:56 [py.warnings] WARNING: C:\Users\Lenovo\anaconda3\Lib\site-packages\scrapy\utils\request.py:232: ScrapyDeprecationWarning: &#39;2.6&#39; is a deprecated value for the &#39;REQUEST_FINGERPRINTER_IMPLEMENTATION&#39; setting.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 23:06:53 [py.warnings] WARNING: C:\Users\Lenovo\anaconda3\Lib\site-packages\scrapy\utils\request.py:232: ScrapyDeprecationWarning: &#39;2.6&#39; is a deprecated value for the &#39;REQUEST_FINGERPRINTER_IMPLEMENTATION&#39; setting.
 
 It is also the default value. In other words, it is normal to get this warning if you have not defined a value for the &#39;REQUEST_FINGERPRINTER_IMPLEMENTATION&#39; setting. This is so for backward compatibility reasons, but it will change in a future version of Scrapy.
 
@@ -515,20 +523,20 @@ See the documentation of the &#39;REQUEST_FINGERPRINTER_IMPLEMENTATION&#39; sett
   return cls(crawler)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:56 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 23:06:53 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:56 [scrapy.extensions.telnet] INFO: Telnet Password: b84e4886596f6888
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 23:06:53 [scrapy.extensions.telnet] INFO: Telnet Password: 3909db07c891a710
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:56 [scrapy.middleware] INFO: Enabled extensions:
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 23:06:53 [scrapy.middleware] INFO: Enabled extensions:
 [&#39;scrapy.extensions.corestats.CoreStats&#39;,
  &#39;scrapy.extensions.telnet.TelnetConsole&#39;,
  &#39;scrapy.extensions.feedexport.FeedExporter&#39;,
  &#39;scrapy.extensions.logstats.LogStats&#39;]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:57 [scrapy.middleware] INFO: Enabled downloader middlewares:
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 23:06:54 [scrapy.middleware] INFO: Enabled downloader middlewares:
 [&#39;scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware&#39;,
  &#39;scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware&#39;,
  &#39;scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware&#39;,
@@ -542,7 +550,7 @@ See the documentation of the &#39;REQUEST_FINGERPRINTER_IMPLEMENTATION&#39; sett
  &#39;scrapy.downloadermiddlewares.stats.DownloaderStats&#39;]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:57 [scrapy.middleware] INFO: Enabled spider middlewares:
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 23:06:54 [scrapy.middleware] INFO: Enabled spider middlewares:
 [&#39;scrapy.spidermiddlewares.httperror.HttpErrorMiddleware&#39;,
  &#39;scrapy.spidermiddlewares.offsite.OffsiteMiddleware&#39;,
  &#39;scrapy.spidermiddlewares.referer.RefererMiddleware&#39;,
@@ -550,21 +558,21 @@ See the documentation of the &#39;REQUEST_FINGERPRINTER_IMPLEMENTATION&#39; sett
  &#39;scrapy.spidermiddlewares.depth.DepthMiddleware&#39;]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:57 [scrapy.middleware] INFO: Enabled item pipelines:
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 23:06:54 [scrapy.middleware] INFO: Enabled item pipelines:
 []
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:57 [scrapy.core.engine] INFO: Spider opened
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 23:06:54 [scrapy.core.engine] INFO: Spider opened
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:57 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 23:06:54 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:57 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 23:06:54 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
 </pre></div>
 </div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">----------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                 </span>Traceback (most recent call last)
 <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">73</span>
 <span class="g g-Whitespace">     </span><span class="mi">71</span> <span class="n">process</span> <span class="o">=</span> <span class="n">CrawlerProcess</span><span class="p">()</span>
 <span class="g g-Whitespace">     </span><span class="mi">72</span> <span class="n">process</span><span class="o">.</span><span class="n">crawl</span><span class="p">(</span><span class="n">CrawlingWeb</span><span class="p">)</span>
@@ -786,6 +794,24 @@ memory usage: 7.4+ KB
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="markdown-notebooks.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Notebooks with MyST Markdown</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Vector%20Space%20Model.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Vector Space Model (VSM)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               

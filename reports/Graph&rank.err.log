@@ -23,8 +23,8 @@ df.head()
 ------------------
 
 
-[1;31m---------------------------------------------------------------------------[0m
-[1;31mFileNotFoundError[0m                         Traceback (most recent call last)
+[1;31m----------------------------------------------------------------[0m
+[1;31mFileNotFoundError[0m              Traceback (most recent call last)
 Cell [1;32mIn[2], line 1[0m
 [1;32m----> 1[0m df [38;5;241m=[39m pd[38;5;241m.[39mread_csv([38;5;124m'[39m[38;5;124mFinal_Data.csv[39m[38;5;124m'[39m)
 [0;32m      2[0m df[38;5;241m.[39mhead()

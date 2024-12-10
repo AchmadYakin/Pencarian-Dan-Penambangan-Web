@@ -1,0 +1,178 @@
+Traceback (most recent call last):
+  File "C:\Users\Lenovo\anaconda3\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\Users\Lenovo\anaconda3\Lib\site-packages\nbclient\client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\anaconda3\Lib\site-packages\jupyter_core\utils\__init__.py", line 173, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\anaconda3\Lib\asyncio\base_events.py", line 653, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\Lenovo\anaconda3\Lib\site-packages\nbclient\client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\Lenovo\anaconda3\Lib\site-packages\nbclient\client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\Lenovo\anaconda3\Lib\site-packages\nbclient\client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import scrapy
+from scrapy.crawler import CrawlerProcess
+
+class CrawlingWeb(scrapy.Spider):
+    name = "SindonewsLinks"
+
+    custom_settings = {
+        'FEEDS': {
+            'Terbaru.csv': {
+                'format': 'csv',
+                'overwrite': True,
+            },
+        },
+        'USER_AGENT': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+    }
+
+    def start_requests(self):
+        # Base URLs dan kategori yang sesuai
+        urls_and_categories = [
+            ("https://international.sindonews.com/more/9", "internasional"),
+            ("https://nasional.sindonews.com/more/5", "nasional")
+        ]
+
+        # Loop untuk men-generate URL dari halaman-halaman yang diinginkan
+        for base_url, kategori in urls_and_categories:
+            for i in range(0, 100, 20):  # Iterasi setiap 20 (pagination)
+                url = f"{base_url}{i}"
+                print(f"Mengambil URL: {url}, Kategori: {kategori}")  # Print URL yang sedang diakses
+                # Memasukkan kategori sebagai meta data
+                yield scrapy.Request(url=url, callback=self.parse, meta={'kategori': kategori})
+
+    def parse(self, response):
+        # Mendapatkan kategori dari meta data
+        kategori = response.meta['kategori']
+        print(f"Status Response: {response.status}, Kategori: {kategori}")
+
+        # Mengambil link berita dari indeks dengan CSS selector yang lebih umum
+        for data in response.css('div.terkini div.grid-kanal-small'):
+          link_berita = data.css('a::attr(href)').get()
+          if link_berita:
+            print(f"Mengambil Link Berita: {link_berita}")
+            # Memasukkan kategori ke dalam meta untuk diteruskan ke `parse_detail`
+            yield response.follow(link_berita, callback=self.parse_detail, meta={'kategori': kategori})
+          else:
+            print("Link tidak terambil")
+
+
+    def parse_detail(self, response):
+        # Ekstrak data dari halaman detail berita
+        judul_berita = response.css('div.detail-title > h1::text').get()
+        isi_berita = response.css('div.detail-desc').get()
+        tanggal_berita = response.css('div.detail-date-artikel::text').get()
+        kategori = response.meta['kategori']
+
+         # untuk mendapatkan semua paragraf
+        if isi_berita:
+            isi_berita = ''.join(response.css('div.detail-desc *::text').getall()).strip()
+
+        # Debugging: print data yang diambil
+        print(f"Judul: {judul_berita}, Tanggal: {tanggal_berita}, Kategori: {kategori}")
+
+        # Simpan data yang diekstrak ke dalam file CSV
+        yield {
+            'Judul': judul_berita,
+            'Isi Berita': isi_berita,
+            'Tanggal Berita': tanggal_berita,
+            'Kategori': kategori,
+        }
+
+# Menjalankan Spider
+process = CrawlerProcess()
+process.crawl(CrawlingWeb)
+process.start()
+------------------
+
+----- stderr -----
+2024-12-10 21:52:56 [scrapy.utils.log] INFO: Scrapy 2.8.0 started (bot: scrapybot)
+----- stderr -----
+2024-12-10 21:52:56 [scrapy.utils.log] INFO: Versions: lxml 4.9.3.0, libxml2 2.10.4, cssselect 1.2.0, parsel 1.8.1, w3lib 2.1.2, Twisted 23.10.0, Python 3.11.7 | packaged by Anaconda, Inc. | (main, Dec 15 2023, 18:05:47) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 24.0.0 (OpenSSL 3.3.1 4 Jun 2024), cryptography 42.0.2, Platform Windows-10-10.0.22631-SP0
+----- stderr -----
+2024-12-10 21:52:56 [scrapy.crawler] INFO: Overridden settings:
+{'USER_AGENT': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+               '(KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
+----- stderr -----
+2024-12-10 21:52:56 [py.warnings] WARNING: C:\Users\Lenovo\anaconda3\Lib\site-packages\scrapy\utils\request.py:232: ScrapyDeprecationWarning: '2.6' is a deprecated value for the 'REQUEST_FINGERPRINTER_IMPLEMENTATION' setting.
+
+It is also the default value. In other words, it is normal to get this warning if you have not defined a value for the 'REQUEST_FINGERPRINTER_IMPLEMENTATION' setting. This is so for backward compatibility reasons, but it will change in a future version of Scrapy.
+
+See the documentation of the 'REQUEST_FINGERPRINTER_IMPLEMENTATION' setting for information on how to handle this deprecation.
+  return cls(crawler)
+----- stderr -----
+2024-12-10 21:52:56 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+----- stderr -----
+2024-12-10 21:52:56 [scrapy.extensions.telnet] INFO: Telnet Password: b84e4886596f6888
+----- stderr -----
+2024-12-10 21:52:56 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats']
+----- stderr -----
+2024-12-10 21:52:57 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+----- stderr -----
+2024-12-10 21:52:57 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+----- stderr -----
+2024-12-10 21:52:57 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+----- stderr -----
+2024-12-10 21:52:57 [scrapy.core.engine] INFO: Spider opened
+----- stderr -----
+2024-12-10 21:52:57 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+----- stderr -----
+2024-12-10 21:52:57 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+------------------
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mAttributeError[0m                            Traceback (most recent call last)
+Cell [1;32mIn[3], line 73[0m
+[0;32m     71[0m process [38;5;241m=[39m CrawlerProcess()
+[0;32m     72[0m process[38;5;241m.[39mcrawl(CrawlingWeb)
+[1;32m---> 73[0m process[38;5;241m.[39mstart()
+
+File [1;32m~\anaconda3\Lib\site-packages\scrapy\crawler.py:376[0m, in [0;36mCrawlerProcess.start[1;34m(self, stop_after_crawl, install_signal_handlers)[0m
+[0;32m    373[0m     d[38;5;241m.[39maddBoth([38;5;28mself[39m[38;5;241m.[39m_stop_reactor)
+[0;32m    375[0m [38;5;28;01mif[39;00m install_signal_handlers:
+[1;32m--> 376[0m     install_shutdown_handlers([38;5;28mself[39m[38;5;241m.[39m_signal_shutdown)
+[0;32m    377[0m resolver_class [38;5;241m=[39m load_object([38;5;28mself[39m[38;5;241m.[39msettings[[38;5;124m"[39m[38;5;124mDNS_RESOLVER[39m[38;5;124m"[39m])
+[0;32m    378[0m resolver [38;5;241m=[39m create_instance(resolver_class, [38;5;28mself[39m[38;5;241m.[39msettings, [38;5;28mself[39m, reactor[38;5;241m=[39mreactor)
+
+File [1;32m~\anaconda3\Lib\site-packages\scrapy\utils\ossignal.py:19[0m, in [0;36minstall_shutdown_handlers[1;34m(function, override_sigint)[0m
+[0;32m     12[0m [38;5;250m[39m[38;5;124;03m"""Install the given function as a signal handler for all common shutdown[39;00m
+[0;32m     13[0m [38;5;124;03msignals (such as SIGINT, SIGTERM, etc). If override_sigint is ``False`` the[39;00m
+[0;32m     14[0m [38;5;124;03mSIGINT handler won't be install if there is already a handler in place[39;00m
+[0;32m     15[0m [38;5;124;03m(e.g.  Pdb)[39;00m
+[0;32m     16[0m [38;5;124;03m"""[39;00m
+[0;32m     17[0m [38;5;28;01mfrom[39;00m [38;5;21;01mtwisted[39;00m[38;5;21;01m.[39;00m[38;5;21;01minternet[39;00m [38;5;28;01mimport[39;00m reactor
+[1;32m---> 19[0m reactor[38;5;241m.[39m_handleSignals()
+[0;32m     20[0m signal[38;5;241m.[39msignal(signal[38;5;241m.[39mSIGTERM, function)
+[0;32m     21[0m [38;5;28;01mif[39;00m signal[38;5;241m.[39mgetsignal(signal[38;5;241m.[39mSIGINT) [38;5;241m==[39m signal[38;5;241m.[39mdefault_int_handler [38;5;129;01mor[39;00m override_sigint:
+
+[1;31mAttributeError[0m: 'SelectReactor' object has no attribute '_handleSignals'
+

@@ -1,0 +1,869 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Klasifikasi Berita &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Crawling Berita';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FCrawling Berita.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Crawling Berita.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Klasifikasi Berita</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#crawling-web-berita">Crawling Web Berita</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-crawling">Implementasi Crawling</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">Import Library</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#code-program">Code Program</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-data">Menampilkan Data</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="klasifikasi-berita">
+<h1>Klasifikasi Berita<a class="headerlink" href="#klasifikasi-berita" title="Link to this heading">#</a></h1>
+<section id="crawling-web-berita">
+<h2>Crawling Web Berita<a class="headerlink" href="#crawling-web-berita" title="Link to this heading">#</a></h2>
+<p><em>Crawling Web Berita</em> merupakan Proses untuk mengotomatisasi untuk menjelajahi sebuah situs web untuk mengumpulkan informasi dari halaman-halaman web. proses ini oleh komputer dikenal dengan istilah Web Crawler. Web crawler akan memulai dengan mengunjungi sebuah halaman web, mengekstrak semua tautan di halaman tersebut, kemudian mengikuti tautan tersebut untuk mengunjungi halaman-halaman lain dan mengumpulkan data yang diperlukan.</p>
+<section id="implementasi-crawling">
+<h3>Implementasi Crawling<a class="headerlink" href="#implementasi-crawling" title="Link to this heading">#</a></h3>
+<p>pada proses ini, saya mengambil data dari website SINDONEWS pada tanggal 04-10-2024. Data yang akan saya kumpulkan mencangkup 2 kategori yaitu Internasional dan Nasional. <br>
+link : <a class="reference external" href="https://www.sindonews.com/">https://www.sindonews.com/</a></p>
+<section id="import-library">
+<h4>Import Library<a class="headerlink" href="#import-library" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pip install scrapy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Library yang saya gunakan</span>
+<span class="kn">import</span> <span class="nn">scrapy</span>
+<span class="kn">from</span> <span class="nn">scrapy.crawler</span> <span class="kn">import</span> <span class="n">CrawlerProcess</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><em>Scrapy</em> sebagai framework untuk scraping web scraping</p></li>
+<li><p><em>from scrapy.crawler import CrawlerProcess</em> untuk menjalankan crawler scrapy</p></li>
+<li><p><em>Pandas</em> untuk memanipulasi data</p></li>
+<li><p><em>Matplotlib</em> untuk memvisualisasikan Data</p></li>
+</ul>
+</section>
+<section id="code-program">
+<h4>Code Program<a class="headerlink" href="#code-program" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scrapy</span>
+<span class="kn">from</span> <span class="nn">scrapy.crawler</span> <span class="kn">import</span> <span class="n">CrawlerProcess</span>
+
+<span class="k">class</span> <span class="nc">CrawlingWeb</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Spider</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;SindonewsLinks&quot;</span>
+
+    <span class="n">custom_settings</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;FEEDS&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;Terbaru.csv&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;format&#39;</span><span class="p">:</span> <span class="s1">&#39;csv&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;overwrite&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;USER_AGENT&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">start_requests</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Base URLs dan kategori yang sesuai</span>
+        <span class="n">urls_and_categories</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="s2">&quot;https://international.sindonews.com/more/9&quot;</span><span class="p">,</span> <span class="s2">&quot;internasional&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="s2">&quot;https://nasional.sindonews.com/more/5&quot;</span><span class="p">,</span> <span class="s2">&quot;nasional&quot;</span><span class="p">)</span>
+        <span class="p">]</span>
+
+        <span class="c1"># Loop untuk men-generate URL dari halaman-halaman yang diinginkan</span>
+        <span class="k">for</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">kategori</span> <span class="ow">in</span> <span class="n">urls_and_categories</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>  <span class="c1"># Iterasi setiap 20 (pagination)</span>
+                <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_url</span><span class="si">}{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mengambil URL: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">, Kategori: </span><span class="si">{</span><span class="n">kategori</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># Print URL yang sedang diakses</span>
+                <span class="c1"># Memasukkan kategori sebagai meta data</span>
+                <span class="k">yield</span> <span class="n">scrapy</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parse</span><span class="p">,</span> <span class="n">meta</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;kategori&#39;</span><span class="p">:</span> <span class="n">kategori</span><span class="p">})</span>
+
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="c1"># Mendapatkan kategori dari meta data</span>
+        <span class="n">kategori</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;kategori&#39;</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Status Response: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status</span><span class="si">}</span><span class="s2">, Kategori: </span><span class="si">{</span><span class="n">kategori</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Mengambil link berita dari indeks dengan CSS selector yang lebih umum</span>
+        <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;div.terkini div.grid-kanal-small&#39;</span><span class="p">):</span>
+          <span class="n">link_berita</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;a::attr(href)&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+          <span class="k">if</span> <span class="n">link_berita</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mengambil Link Berita: </span><span class="si">{</span><span class="n">link_berita</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="c1"># Memasukkan kategori ke dalam meta untuk diteruskan ke `parse_detail`</span>
+            <span class="k">yield</span> <span class="n">response</span><span class="o">.</span><span class="n">follow</span><span class="p">(</span><span class="n">link_berita</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_detail</span><span class="p">,</span> <span class="n">meta</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;kategori&#39;</span><span class="p">:</span> <span class="n">kategori</span><span class="p">})</span>
+          <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Link tidak terambil&quot;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">parse_detail</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="c1"># Ekstrak data dari halaman detail berita</span>
+        <span class="n">judul_berita</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;div.detail-title &gt; h1::text&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="n">isi_berita</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;div.detail-desc&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="n">tanggal_berita</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;div.detail-date-artikel::text&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="n">kategori</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;kategori&#39;</span><span class="p">]</span>
+
+         <span class="c1"># untuk mendapatkan semua paragraf</span>
+        <span class="k">if</span> <span class="n">isi_berita</span><span class="p">:</span>
+            <span class="n">isi_berita</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;div.detail-desc *::text&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">getall</span><span class="p">())</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+        <span class="c1"># Debugging: print data yang diambil</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Judul: </span><span class="si">{</span><span class="n">judul_berita</span><span class="si">}</span><span class="s2">, Tanggal: </span><span class="si">{</span><span class="n">tanggal_berita</span><span class="si">}</span><span class="s2">, Kategori: </span><span class="si">{</span><span class="n">kategori</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Simpan data yang diekstrak ke dalam file CSV</span>
+        <span class="k">yield</span> <span class="p">{</span>
+            <span class="s1">&#39;Judul&#39;</span><span class="p">:</span> <span class="n">judul_berita</span><span class="p">,</span>
+            <span class="s1">&#39;Isi Berita&#39;</span><span class="p">:</span> <span class="n">isi_berita</span><span class="p">,</span>
+            <span class="s1">&#39;Tanggal Berita&#39;</span><span class="p">:</span> <span class="n">tanggal_berita</span><span class="p">,</span>
+            <span class="s1">&#39;Kategori&#39;</span><span class="p">:</span> <span class="n">kategori</span><span class="p">,</span>
+        <span class="p">}</span>
+
+<span class="c1"># Menjalankan Spider</span>
+<span class="n">process</span> <span class="o">=</span> <span class="n">CrawlerProcess</span><span class="p">()</span>
+<span class="n">process</span><span class="o">.</span><span class="n">crawl</span><span class="p">(</span><span class="n">CrawlingWeb</span><span class="p">)</span>
+<span class="n">process</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:56 [scrapy.utils.log] INFO: Scrapy 2.8.0 started (bot: scrapybot)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:56 [scrapy.utils.log] INFO: Versions: lxml 4.9.3.0, libxml2 2.10.4, cssselect 1.2.0, parsel 1.8.1, w3lib 2.1.2, Twisted 23.10.0, Python 3.11.7 | packaged by Anaconda, Inc. | (main, Dec 15 2023, 18:05:47) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 24.0.0 (OpenSSL 3.3.1 4 Jun 2024), cryptography 42.0.2, Platform Windows-10-10.0.22631-SP0
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:56 [scrapy.crawler] INFO: Overridden settings:
+{&#39;USER_AGENT&#39;: &#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 &#39;
+               &#39;(KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36&#39;}
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:56 [py.warnings] WARNING: C:\Users\Lenovo\anaconda3\Lib\site-packages\scrapy\utils\request.py:232: ScrapyDeprecationWarning: &#39;2.6&#39; is a deprecated value for the &#39;REQUEST_FINGERPRINTER_IMPLEMENTATION&#39; setting.
+
+It is also the default value. In other words, it is normal to get this warning if you have not defined a value for the &#39;REQUEST_FINGERPRINTER_IMPLEMENTATION&#39; setting. This is so for backward compatibility reasons, but it will change in a future version of Scrapy.
+
+See the documentation of the &#39;REQUEST_FINGERPRINTER_IMPLEMENTATION&#39; setting for information on how to handle this deprecation.
+  return cls(crawler)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:56 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.selectreactor.SelectReactor
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:56 [scrapy.extensions.telnet] INFO: Telnet Password: b84e4886596f6888
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:56 [scrapy.middleware] INFO: Enabled extensions:
+[&#39;scrapy.extensions.corestats.CoreStats&#39;,
+ &#39;scrapy.extensions.telnet.TelnetConsole&#39;,
+ &#39;scrapy.extensions.feedexport.FeedExporter&#39;,
+ &#39;scrapy.extensions.logstats.LogStats&#39;]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:57 [scrapy.middleware] INFO: Enabled downloader middlewares:
+[&#39;scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware&#39;,
+ &#39;scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware&#39;,
+ &#39;scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware&#39;,
+ &#39;scrapy.downloadermiddlewares.useragent.UserAgentMiddleware&#39;,
+ &#39;scrapy.downloadermiddlewares.retry.RetryMiddleware&#39;,
+ &#39;scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware&#39;,
+ &#39;scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware&#39;,
+ &#39;scrapy.downloadermiddlewares.redirect.RedirectMiddleware&#39;,
+ &#39;scrapy.downloadermiddlewares.cookies.CookiesMiddleware&#39;,
+ &#39;scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware&#39;,
+ &#39;scrapy.downloadermiddlewares.stats.DownloaderStats&#39;]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:57 [scrapy.middleware] INFO: Enabled spider middlewares:
+[&#39;scrapy.spidermiddlewares.httperror.HttpErrorMiddleware&#39;,
+ &#39;scrapy.spidermiddlewares.offsite.OffsiteMiddleware&#39;,
+ &#39;scrapy.spidermiddlewares.referer.RefererMiddleware&#39;,
+ &#39;scrapy.spidermiddlewares.urllength.UrlLengthMiddleware&#39;,
+ &#39;scrapy.spidermiddlewares.depth.DepthMiddleware&#39;]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:57 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:57 [scrapy.core.engine] INFO: Spider opened
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:57 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-10 21:52:57 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">73</span>
+<span class="g g-Whitespace">     </span><span class="mi">71</span> <span class="n">process</span> <span class="o">=</span> <span class="n">CrawlerProcess</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">72</span> <span class="n">process</span><span class="o">.</span><span class="n">crawl</span><span class="p">(</span><span class="n">CrawlingWeb</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">73</span> <span class="n">process</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="nn">File ~\anaconda3\Lib\site-packages\scrapy\crawler.py:376,</span> in <span class="ni">CrawlerProcess.start</span><span class="nt">(self, stop_after_crawl, install_signal_handlers)</span>
+<span class="g g-Whitespace">    </span><span class="mi">373</span>     <span class="n">d</span><span class="o">.</span><span class="n">addBoth</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_stop_reactor</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">375</span> <span class="k">if</span> <span class="n">install_signal_handlers</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">376</span>     <span class="n">install_shutdown_handlers</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_signal_shutdown</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">377</span> <span class="n">resolver_class</span> <span class="o">=</span> <span class="n">load_object</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">[</span><span class="s2">&quot;DNS_RESOLVER&quot;</span><span class="p">])</span>
+<span class="g g-Whitespace">    </span><span class="mi">378</span> <span class="n">resolver</span> <span class="o">=</span> <span class="n">create_instance</span><span class="p">(</span><span class="n">resolver_class</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">reactor</span><span class="o">=</span><span class="n">reactor</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\Lib\site-packages\scrapy\utils\ossignal.py:19,</span> in <span class="ni">install_shutdown_handlers</span><span class="nt">(function, override_sigint)</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Install the given function as a signal handler for all common shutdown</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span><span class="sd"> signals (such as SIGINT, SIGTERM, etc). If override_sigint is ``False`` the</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span><span class="sd"> SIGINT handler won&#39;t be install if there is already a handler in place</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span><span class="sd"> (e.g.  Pdb)</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span><span class="sd"> &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="kn">from</span> <span class="nn">twisted.internet</span> <span class="kn">import</span> <span class="n">reactor</span>
+<span class="ne">---&gt; </span><span class="mi">19</span> <span class="n">reactor</span><span class="o">.</span><span class="n">_handleSignals</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGTERM</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="k">if</span> <span class="n">signal</span><span class="o">.</span><span class="n">getsignal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">)</span> <span class="o">==</span> <span class="n">signal</span><span class="o">.</span><span class="n">default_int_handler</span> <span class="ow">or</span> <span class="n">override_sigint</span><span class="p">:</span>
+
+<span class="ne">AttributeError</span>: &#39;SelectReactor&#39; object has no attribute &#39;_handleSignals&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Code diatas, berguna untuk mengambil setiap data berita dari Judul, Isi Berita, Tanggal Berita dan Kategori Berita.</p>
+</section>
+</section>
+<section id="menampilkan-data">
+<h3>Menampilkan Data<a class="headerlink" href="#menampilkan-data" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Sindonews.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Judul</th>
+      <th>Isi Berita</th>
+      <th>Tanggal Berita</th>
+      <th>Kategori</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Kejagung Beberkan Peran Tom Lembong di Kasus I...</td>
+      <td>JAKARTA - Kejaksaan Agung (Kejagung) menetapka...</td>
+      <td>Selasa, 29 Oktober 2024 - 22:02 WIB</td>
+      <td>nasional</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Prabowo Larang Menteri Pakai Mobil Impor, Mobi...</td>
+      <td>JAKARTA - Presiden  Prabowo Subianto  meminta ...</td>
+      <td>Senin, 28 Oktober 2024 - 17:54 WIB</td>
+      <td>nasional</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Instruksikan Menteri Gunakan Maung, Logis 08: ...</td>
+      <td>JAKARTA - Presiden terpilih Prabowo Subianto k...</td>
+      <td>Rabu, 30 Oktober 2024 - 19:45 WIB</td>
+      <td>nasional</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7 Fakta Ipda Rudy Soik, Perwira Polisi yang Di...</td>
+      <td>JAKARTA -  Ipda Rudy Soik , Anggota Polda Nusa...</td>
+      <td>Senin, 28 Oktober 2024 - 17:52 WIB</td>
+      <td>nasional</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Bendum Perindo Angkie Yudistia Terima Pengharg...</td>
+      <td>JAKARTA - Bendahara Umum (Bendum) Partai Perin...</td>
+      <td>Selasa, 29 Oktober 2024 - 21:53 WIB</td>
+      <td>nasional</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>227</th>
+      <td>Butuh 1 Tahun Tetapkan Tom Lembong Jadi Tersan...</td>
+      <td>JAKARTA - Kejaksaan Agung (Kejagung) memberika...</td>
+      <td>Rabu, 30 Oktober 2024 - 18:27 WIB</td>
+      <td>nasional</td>
+    </tr>
+    <tr>
+      <th>228</th>
+      <td>Menteri ATR/BPN Nusron Wahid Ingin Mafia Tanah...</td>
+      <td>JAKARTA - Menteri Agraria dan Tata Ruang/Kepal...</td>
+      <td>Rabu, 30 Oktober 2024 - 12:35 WIB</td>
+      <td>nasional</td>
+    </tr>
+    <tr>
+      <th>229</th>
+      <td>PGN Siap Ambil Peran dalam Gotong Royong Bangu...</td>
+      <td>JAKARTA - PT PGN Tbk selaku Subholding Gas Per...</td>
+      <td>Rabu, 30 Oktober 2024 - 12:35 WIB</td>
+      <td>nasional</td>
+    </tr>
+    <tr>
+      <th>230</th>
+      <td>Kapolri Siapkan Program 100 Hari Sukseskan Ast...</td>
+      <td>JAKARTA   - Kapolri Jenderal Polisi Listyo Sig...</td>
+      <td>Selasa, 29 Oktober 2024 - 13:13 WIB</td>
+      <td>nasional</td>
+    </tr>
+    <tr>
+      <th>231</th>
+      <td>Breaking News! Tom Lembong Tersangka Kasus Imp...</td>
+      <td>JAKARTA - Mantan Menteri Perdagangan Thomas Tr...</td>
+      <td>Selasa, 29 Oktober 2024 - 20:46 WIB</td>
+      <td>nasional</td>
+    </tr>
+  </tbody>
+</table>
+<p>232 rows × 4 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 232 entries, 0 to 231
+Data columns (total 4 columns):
+ #   Column          Non-Null Count  Dtype 
+---  ------          --------------  ----- 
+ 0   Judul           232 non-null    object
+ 1   Isi Berita      232 non-null    object
+ 2   Tanggal Berita  232 non-null    object
+ 3   Kategori        232 non-null    object
+dtypes: object(4)
+memory usage: 7.4+ KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Visual</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">Kategori</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">Visual</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Kategori&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Berita&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Jumlah Berita Berdasarkan Kategori&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/5ea3a98fab87c2ab84001af7ef3681fe54e14a6bb9178b136be8541c3c0840fc.png" src="_images/5ea3a98fab87c2ab84001af7ef3681fe54e14a6bb9178b136be8541c3c0840fc.png" />
+</div>
+</div>
+<p>Data Hasil Crawling Dari portal berita <strong>SindoNews</strong> berjumlah 200 dengan 2 kategori yaitu Nasional dan Internasional.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#crawling-web-berita">Crawling Web Berita</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-crawling">Implementasi Crawling</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#import-library">Import Library</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#code-program">Code Program</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-data">Menampilkan Data</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
